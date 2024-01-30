@@ -82,7 +82,7 @@ class Pipe(pygame.sprite.Sprite):
         self.mask = pygame.mask.from_surface(self.image)
 
 
-    def update(self):
+    def update(self)->None:
         self.rect[0] -= GAME_SPEED
 
         
@@ -99,7 +99,7 @@ class Ground(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect[0] = xpos
         self.rect[1] = SCREEN_HEIGHT - GROUND_HEIGHT
-    def update(self):
+    def update(self)->None:
         self.rect[0] -= GAME_SPEED
 
 def is_off_screen(sprite:Sprite) -> Sprite:
