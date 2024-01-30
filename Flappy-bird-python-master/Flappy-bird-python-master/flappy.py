@@ -1,5 +1,6 @@
 import pygame, random, time
 from pygame.locals import *
+from pygame.sprite import Sprite
 
 # variables
 SCREEN_WIDTH = 400
@@ -101,7 +102,7 @@ class Ground(pygame.sprite.Sprite):
     def update(self):
         self.rect[0] -= GAME_SPEED
 
-def is_off_screen(sprite):
+def is_off_screen(sprite:Sprite) -> Sprite:
     return sprite.rect[0] < -(sprite.rect[2])
 
 def get_random_pipes(xpos):
