@@ -25,7 +25,7 @@ pygame.mixer.init()
 
 class Bird(pygame.sprite.Sprite):
 
-    def __init__(self):
+    def __init__(self)->None:
         pygame.sprite.Sprite.__init__(self)
 
         self.images =  [pygame.image.load('assets/sprites/bluebird-upflap.png').convert_alpha(),
@@ -42,7 +42,7 @@ class Bird(pygame.sprite.Sprite):
         self.rect[0] = SCREEN_WIDTH / 6
         self.rect[1] = SCREEN_HEIGHT / 2
 
-    def update(self):
+    def update(self)->None:
         self.current_image = (self.current_image + 1) % 3
         self.image = self.images[self.current_image]
         self.SPEED += GRAVITY
@@ -50,10 +50,10 @@ class Bird(pygame.sprite.Sprite):
         # update height
         self.rect[1] += self.SPEED
 
-    def bump(self):
+    def bump(self)->None:
         self.SPEED = -SPEED
 
-    def begin(self):
+    def begin(self)->None:
         self.current_image = (self.current_image + 1) % 3
         self.image = self.images[self.current_image]
 
@@ -62,7 +62,7 @@ class Bird(pygame.sprite.Sprite):
 
 class Pipe(pygame.sprite.Sprite):
 
-    def __init__(self, inverted, xpos, ysize):
+    def __init__(self, inverted, xpos, ysize)->None:
         pygame.sprite.Sprite.__init__(self)
 
         self.image = pygame.image.load('assets/sprites/pipe-green.png').convert_alpha()
