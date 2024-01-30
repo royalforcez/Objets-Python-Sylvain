@@ -175,6 +175,7 @@ while begin:
     pygame.display.update()
 
 
+
 while True:
 
     clock.tick(15)
@@ -205,6 +206,7 @@ while True:
         pipe_group.add(pipes[0])
         pipe_group.add(pipes[1])
 
+
     bird_group.update()
     ground_group.update()
     pipe_group.update()
@@ -221,4 +223,15 @@ while True:
         pygame.mixer.music.play()
         time.sleep(1)
         break
+
+class Game :
+    def __init__(self) -> None:
+        pass
+    def is_ended(self)->bool:
+        return False
+    def update(self)->None:
+        pass
+    def render(self)->None:
+        pass
+    def
 
