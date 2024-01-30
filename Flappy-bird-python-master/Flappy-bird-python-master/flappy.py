@@ -1,5 +1,6 @@
-import pygame, random, time
+import random, time
 from pygame.locals import *
+from pygame.locals import pygame
 from pygame.sprite import Sprite
 
 # variables
@@ -89,7 +90,7 @@ class Pipe(pygame.sprite.Sprite):
 
 class Ground(pygame.sprite.Sprite):
     
-    def __init__(self, xpos):
+    def __init__(self, xpos)->None:
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load('assets/sprites/base.png').convert_alpha()
         self.image = pygame.transform.scale(self.image, (GROUND_WIDTH, GROUND_HEIGHT))
@@ -105,7 +106,7 @@ class Ground(pygame.sprite.Sprite):
 def is_off_screen(sprite:Sprite) -> Sprite:
     return sprite.rect[0] < -(sprite.rect[2])
 
-def get_random_pipes(xpos):
+def get_random_pipes(xpos:int)->tuple:
     size = random.randint(100, 300)
     pipe = Pipe(False, xpos, size)
     pipe_inverted = Pipe(True, xpos, SCREEN_HEIGHT - size - PIPE_GAP)
