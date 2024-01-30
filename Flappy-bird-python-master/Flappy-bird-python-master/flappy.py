@@ -1,7 +1,7 @@
 import pygame, random, time
 from pygame.locals import *
 
-#VARIABLES
+#variables
 screen_width = 400
 screen_height = 600
 speed = 20
@@ -46,7 +46,7 @@ class Bird(pygame.sprite.Sprite):
         self.image = self.images[self.current_image]
         self.speed += gravity
 
-        #UPDATE HEIGHT
+        #update height
         self.rect[1] += self.speed
 
     def bump(self):
