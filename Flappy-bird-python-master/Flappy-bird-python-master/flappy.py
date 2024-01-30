@@ -115,9 +115,9 @@ pygame.init()
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Flappy Bird')
 
-BACKGROUND = pygame.image.load('assets/sprites/background-day.png')
-BACKGROUND = pygame.transform.scale(BACKGROUND, (screen_width, screen_height))
-BEGIN_IMAGE = pygame.image.load('assets/sprites/message.png').convert_alpha()
+background = pygame.image.load('assets/sprites/background-day.png')
+background = pygame.transform.scale(background, (screen_width, screen_height))
+begin_image = pygame.image.load('assets/sprites/message.png').convert_alpha()
 
 bird_group = pygame.sprite.Group()
 bird = Bird()
@@ -155,8 +155,8 @@ while begin:
                 pygame.mixer.music.play()
                 begin = False
 
-    screen.blit(BACKGROUND, (0, 0))
-    screen.blit(BEGIN_IMAGE, (120, 150))
+    screen.blit(background, (0, 0))
+    screen.blit(begin_image, (120, 150))
 
     if is_off_screen(ground_group.sprites()[0]):
         ground_group.remove(ground_group.sprites()[0])
@@ -186,7 +186,7 @@ while True:
                 pygame.mixer.music.load(wing)
                 pygame.mixer.music.play()
 
-    screen.blit(BACKGROUND, (0, 0))
+    screen.blit(background, (0, 0))
 
     if is_off_screen(ground_group.sprites()[0]):
         ground_group.remove(ground_group.sprites()[0])
