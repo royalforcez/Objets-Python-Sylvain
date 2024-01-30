@@ -139,7 +139,7 @@ for i in range (2):
 
 
 clock = pygame.time.Clock()
-
+#music
 begin = True
 
 while begin:
@@ -188,7 +188,7 @@ while True:
                 pygame.mixer.music.play()
 
     screen.blit(BACKGROUND, (0, 0))
-
+    #scroll
     if is_off_screen(ground_group.sprites()[0]):
         ground_group.remove(ground_group.sprites()[0])
 

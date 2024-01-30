@@ -1,0 +1,7 @@
+class music(self):
+
+prendre les lignes qui ajoutent les bruitages à l'oiseau
+
+class scroll(self):
+
+prendre les lignes qui mettent à jour l'affichage des tuyaux et leur disparition.
