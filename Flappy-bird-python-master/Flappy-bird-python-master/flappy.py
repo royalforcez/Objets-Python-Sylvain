@@ -225,10 +225,7 @@ class Game :
 
 game = Game()
 while not game.is_ended():
-
+    
+    clock.tick(15)
     game.update(clock)
     game.render()
-
-    clock.tick(15)
-
-
