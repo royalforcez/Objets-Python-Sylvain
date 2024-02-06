@@ -177,67 +177,63 @@ while begin:
 
 
 
-while True:
-
-    clock.tick(15)
-
-    for event in pygame.event.get():
-        if event.type == QUIT:
-            pygame.quit()
-        if event.type == KEYDOWN:
-            if event.key == K_SPACE or event.key == K_UP:
-                bird.bump()
-                pygame.mixer.music.load(wing)
-                pygame.mixer.music.play()
-
-    screen.blit(BACKGROUND, (0, 0))
-    #scroll
-    if is_off_screen(ground_group.sprites()[0]):
-        ground_group.remove(ground_group.sprites()[0])
-
-        new_ground = Ground(GROUND_WIDTH - 20)
-        ground_group.add(new_ground)
-
-    if is_off_screen(pipe_group.sprites()[0]):
-        pipe_group.remove(pipe_group.sprites()[0])
-        pipe_group.remove(pipe_group.sprites()[0])
-
-        pipes = get_random_pipes(SCREEN_WIDTH * 2)
-
-        pipe_group.add(pipes[0])
-        pipe_group.add(pipes[1])
-
-
-    bird_group.update()
-    ground_group.update()
-    pipe_group.update()
-
-    bird_group.draw(screen)
-    pipe_group.draw(screen)
-    ground_group.draw(screen)
-
-    pygame.display.update()
-
-    if (pygame.sprite.groupcollide(bird_group, ground_group, False, False, pygame.sprite.collide_mask) or
-            pygame.sprite.groupcollide(bird_group, pipe_group, False, False, pygame.sprite.collide_mask)):
-        pygame.mixer.music.load(hit)
-        pygame.mixer.music.play()
-        time.sleep(1)
-        break
-
 class Game :
+
     def __init__(self) -> None:
-        pass
+        self.ended = False
+
     def is_ended(self)->bool:
-        return False
-    def update(self)->None:
-        pass
+        return self.ended
+
+    def update(self, clock: pygame.time.Clock)->None:
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+            if event.type == KEYDOWN:
+                if event.key == K_SPACE or event.key == K_UP:
+                    bird.bump()
+                    pygame.mixer.music.load(wing)
+                    pygame.mixer.music.play()
+        bird_group.update()
+        ground_group.update()
+        pipe_group.update()
+        pygame.display.update()
+
     def render(self)->None:
-        pass
+        screen.blit(BACKGROUND, (0, 0))
+        #scroll
+        if is_off_screen(ground_group.sprites()[0]):
+            ground_group.remove(ground_group.sprites()[0])
+
+            new_ground = Ground(GROUND_WIDTH - 20)
+            ground_group.add(new_ground)
+
+        if is_off_screen(pipe_group.sprites()[0]):
+            pipe_group.remove(pipe_group.sprites()[0])
+            pipe_group.remove(pipe_group.sprites()[0])
+
+            pipes = get_random_pipes(SCREEN_WIDTH * 2)
+
+            pipe_group.add(pipes[0])
+            pipe_group.add(pipes[1])
+
+        bird_group.draw(screen)
+        pipe_group.draw(screen)
+        ground_group.draw(screen)
+        if (pygame.sprite.groupcollide(bird_group, ground_group, False, False, pygame.sprite.collide_mask) or
+            pygame.sprite.groupcollide(bird_group, pipe_group, False, False, pygame.sprite.collide_mask)):
+            pygame.mixer.music.load(hit)
+            pygame.mixer.music.play()
+            time.sleep(1)
+            self.ended = True
+
+
 game = Game()
 while not game.is_ended():
     game.update(clock)
     game.render()
+
+    clock.tick(15)
 
 
 
