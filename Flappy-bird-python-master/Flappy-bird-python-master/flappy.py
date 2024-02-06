@@ -234,5 +234,10 @@ class Game :
         pass
     def render(self)->None:
         pass
+game = Game()
+while not game.is_ended():
+    game.update(clock)
+    game.render()
+
 
 
