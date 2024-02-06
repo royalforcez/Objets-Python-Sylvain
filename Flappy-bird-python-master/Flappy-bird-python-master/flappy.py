@@ -1,4 +1,5 @@
-import random, time
+import random
+import time
 from pygame.locals import *
 from pygame.locals import pygame
 from pygame.sprite import Sprite
