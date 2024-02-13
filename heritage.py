@@ -1,5 +1,15 @@
 #heritage ASCII
 
+class Forme:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+
+
+
+
+
 class Carre:
     def __init__(self, x, y, cote):
         self.x = x
@@ -10,6 +20,8 @@ class Carre:
         for i in range(self.y, self.y + self.cote):
             for j in range(self.x, self.x + self.cote):
                 ecran[i][j] = '*'
+
+
 
 #variables
 LARGEUR = 50
