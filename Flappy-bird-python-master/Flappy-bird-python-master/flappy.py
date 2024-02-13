@@ -1,7 +1,10 @@
 import random
 import time
+
 from pipe import Pipe
 from bird import Bird
+from ground import Ground
+
 from pygame.locals import *
 from pygame.locals import pygame
 from pygame.sprite import Sprite
@@ -22,25 +25,6 @@ hit = 'assets/audio/hit.wav'
 
 pygame.mixer.init()
 
-        
-
-class Ground(pygame.sprite.Sprite):
-    
-    def __init__(self, xpos)->None:
-        pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load('assets/sprites/base.png').convert_alpha()
-        self.image = pygame.transform.scale(self.image, (GROUND_WIDTH, GROUND_HEIGHT))
-
-        self.mask = pygame.mask.from_surface(self.image)
-
-        self.rect = self.image.get_rect()
-        self.rect[0] = xpos
-        self.rect[1] = SCREEN_HEIGHT - GROUND_HEIGHT
-    def update(self)->None:
-        self.rect[0] -= GAME_SPEED
-
-def is_off_screen(sprite:Sprite) -> Sprite:
-    return sprite.rect[0] < -(sprite.rect[2])
 
 
 pygame.init()
@@ -110,7 +94,7 @@ class Game :
             screen.blit(BACKGROUND, (0, 0))
             screen.blit(BEGIN_IMAGE, (120, 150))
 
-            if is_off_screen(ground_group.sprites()[0]):
+            if Ground.is_off_screen(ground_group.sprites()[0]):
                 ground_group.remove(ground_group.sprites()[0])
 
                 new_ground = Ground(GROUND_WIDTH - 20)
@@ -126,13 +110,13 @@ class Game :
         else:
             screen.blit(BACKGROUND, (0, 0))
             #scroll
-            if is_off_screen(ground_group.sprites()[0]):
+            if Ground.is_off_screen(ground_group.sprites()[0]):
                 ground_group.remove(ground_group.sprites()[0])
 
                 new_ground = Ground(GROUND_WIDTH - 20)
                 ground_group.add(new_ground)
 
-            if is_off_screen(pipe_group.sprites()[0]):
+            if Ground.is_off_screen(pipe_group.sprites()[0]):
                 pipe_group.remove(pipe_group.sprites()[0])
                 pipe_group.remove(pipe_group.sprites()[0])
 
